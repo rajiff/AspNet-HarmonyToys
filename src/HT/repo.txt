@@ -1,0 +1,28 @@
+Project HT (.NETCoreApp,Version=v1.0) was previously compiled. Skipping compilation.
+info: Microsoft.EntityFrameworkCore.Storage.IRelationalCommandBuilderFactory[1]
+      Executed DbCommand (112ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+info: Microsoft.EntityFrameworkCore.Storage.IRelationalCommandBuilderFactory[1]
+      Executed DbCommand (7ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT CASE
+          WHEN EXISTS (
+              SELECT 1
+              FROM [tblUserDetails] AS [t])
+          THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+      END
+info: Microsoft.Extensions.DependencyInjection.DataProtectionServices[0]
+      User profile is available. Using 'C:\Users\mukesh\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+Hosting environment: Production
+Content root path: c:\stack\HT_Core\HT\src\HT
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://localhost:5000/  
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Executing action method HT.Controllers.HomeController.Index (HT) with arguments ((null)) - ModelState is Valid
+info: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ViewResultExecutor[1]
+      Executing ViewResult, running view at path /Views/Home/Index.cshtml.
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action HT.Controllers.HomeController.Index (HT) in 5224.367ms
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 5945.8889ms 200 text/html; charset=utf-8

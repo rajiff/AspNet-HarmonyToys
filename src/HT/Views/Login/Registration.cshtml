@@ -1,0 +1,92 @@
+@model HT.UserViewModel.Registration
+
+@{
+    ViewData["Title"] = "Registration";
+}
+
+<h2>Registration</h2>
+
+<form asp-action="Register">
+    <div class="form-horizontal">
+        <h4>Registration</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Fname" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Fname" class="form-control" />
+                <span asp-validation-for="Fname" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Lname" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Lname" class="form-control" />
+                <span asp-validation-for="Lname" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="EmailID" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="EmailID" class="form-control" />
+                <span asp-validation-for="EmailID" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Password" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ConfirmPassword" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="ConfirmPassword" class="form-control" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Phone" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Address" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <div class="checkbox">
+                    <input asp-for="IsAdmin" />
+                    <label asp-for="IsAdmin"></label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                @if (User.IsInRole("Admin") == true && ViewData["mode"].ToString() == "edit")
+                {
+                    <input type="text" id="hfoper" value="update" name="hfoper" style="display:none" />
+                    <input type="submit" value="Update" id="btnhtupdate" class="btn btn-default" />
+                }
+                else
+                {
+                <input type="text" id="mode" value="new" name="mode" style="display:none" />
+                <input type="submit" value="Register" id="btnhtregistration" class="btn btn-default" />
+                <a asp-area="" asp-controller="Login" asp-action="Clear" id="btnhtclear" class="btn btn-default">Reset</a>
+                }
+            </div>
+        </div>
+    </div>
+</form>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

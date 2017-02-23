@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<gendarme-output date="02/22/2017 06:52:56">
+  <files>
+    <file Name="HT, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">/home/nishant/workspace/HarmonyToys/src/HT/bin/Debug/netcoreapp1.0/HT.dll</file>
+  </files>
+  <rules>
+    <rule Name="PreferEmptyInstanceOverNullRule" Type="Method" Uri="https://github.com/spouliot/gendarme/wiki/Gendarme.Rules.BadPractice.PreferEmptyInstanceOverNullRule(2.10)">Gendarme.Rules.BadPractice.PreferEmptyInstanceOverNullRule</rule>
+    <rule Name="EqualsShouldHandleNullArgRule" Type="Type" Uri="https://github.com/spouliot/gendarme/wiki/Gendarme.Rules.BadPractice.EqualsShouldHandleNullArgRule(2.10)">Gendarme.Rules.BadPractice.EqualsShouldHandleNullArgRule</rule>
+    <rule Name="DisableDebuggingCodeRule" Type="Method" Uri="https://github.com/spouliot/gendarme/wiki/Gendarme.Rules.BadPractice.DisableDebuggingCodeRule(2.10)">Gendarme.Rules.BadPractice.DisableDebuggingCodeRule</rule>
+    <rule Name="AvoidVisibleConstantFieldRule" Type="Type" Uri="https://github.com/spouliot/gendarme/wiki/Gendarme.Rules.BadPractice.AvoidVisibleConstantFieldRule(2.10)">Gendarme.Rules.BadPractice.AvoidVisibleConstantFieldRule</rule>
+    <rule Name="DoNotForgetNotImplementedMethodsRule" Type="Method" Uri="https://github.com/spouliot/gendarme/wiki/Gendarme.Rules.BadPractice.DoNotForgetNotImplementedMethodsRule(2.10)">Gendarme.Rules.BadPractice.DoNotForgetNotImplementedMethodsRule</rule>
+    <rule Name="AvoidDeepNamespaceHierarchyRule" Type="Assembly" Uri="https://github.com/spouliot/gendarme/wiki/Gendarme.Rules.Naming.AvoidDeepNamespaceHierarchyRule(2.10)">Gendarme.Rules.Naming.AvoidDeepNamespaceHierarchyRule</rule>
+    <rule Name="AvoidNonAlphanumericIdentifierRule" Type="Assembly" Uri="https://github.com/spouliot/gendarme/wiki/Gendarme.Rules.Naming.AvoidNonAlphanumericIdentifierRule(2.10)">Gendarme.Rules.Naming.AvoidNonAlphanumericIdentifierRule</rule>
+    <rule Name="AvoidRedundancyInMethodNameRule" Type="Method" Uri="https://github.com/spouliot/gendarme/wiki/Gendarme.Rules.Naming.AvoidRedundancyInMethodNameRule(2.10)">Gendarme.Rules.Naming.AvoidRedundancyInMethodNameRule</rule>
+    <rule Name="AvoidRedundancyInTypeNameRule" Type="Type" Uri="https://github.com/spouliot/gendarme/wiki/Gendarme.Rules.Naming.AvoidRedundancyInTypeNameRule(2.10)">Gendarme.Rules.Naming.AvoidRedundancyInTypeNameRule</rule>
+    <rule Name="DoNotPrefixValuesWithEnumNameRule" Type="Type" Uri="https://github.com/spouliot/gendarme/wiki/Gendarme.Rules.Naming.DoNotPrefixValuesWithEnumNameRule(2.10)">Gendarme.Rules.Naming.DoNotPrefixValuesWithEnumNameRule</rule>
+    <rule Name="UseCorrectCasingRule" Type="Assembly" Uri="https://github.com/spouliot/gendarme/wiki/Gendarme.Rules.Naming.UseCorrectCasingRule(2.10)">Gendarme.Rules.Naming.UseCorrectCasingRule</rule>
+    <rule Name="AvoidCodeDuplicatedInSameClassRule" Type="Type" Uri="https://github.com/spouliot/gendarme/wiki/Gendarme.Rules.Smells.AvoidCodeDuplicatedInSameClassRule(2.10)">Gendarme.Rules.Smells.AvoidCodeDuplicatedInSameClassRule</rule>
+    <rule Name="AvoidLargeClassesRule" Type="Type" Uri="https://github.com/spouliot/gendarme/wiki/Gendarme.Rules.Smells.AvoidLargeClassesRule(2.10)">Gendarme.Rules.Smells.AvoidLargeClassesRule</rule>
+    <rule Name="AvoidLongParameterListsRule" Type="Type" Uri="https://github.com/spouliot/gendarme/wiki/Gendarme.Rules.Smells.AvoidLongParameterListsRule(2.10)">Gendarme.Rules.Smells.AvoidLongParameterListsRule</rule>
+    <rule Name="NonConstantStaticFieldsShouldNotBeVisibleRule" Type="Type" Uri="https://github.com/spouliot/gendarme/wiki/Gendarme.Rules.Concurrency.NonConstantStaticFieldsShouldNotBeVisibleRule(2.10)">Gendarme.Rules.Concurrency.NonConstantStaticFieldsShouldNotBeVisibleRule</rule>
+    <rule Name="ArrayFieldsShouldNotBeReadOnlyRule" Type="Type" Uri="https://github.com/spouliot/gendarme/wiki/Gendarme.Rules.Security.ArrayFieldsShouldNotBeReadOnlyRule(2.10)">Gendarme.Rules.Security.ArrayFieldsShouldNotBeReadOnlyRule</rule>
+  </rules>
+  <results>
+    <rule Name="AvoidCodeDuplicatedInSameClassRule" Uri="https://github.com/spouliot/gendarme/wiki/Gendarme.Rules.Smells.AvoidCodeDuplicatedInSameClassRule(2.10)">
+      <problem>There is similar code in various methods in the same class.  Your code will be better if you can unify them.</problem>
+      <solution>You should apply the Extract Method refactoring and have a single implementation of the code.</solution>
+      <target Name="HT.Controllers.UserController" Assembly="HT, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <defect Severity="High" Confidence="Normal" Location="Microsoft.AspNetCore.Mvc.IActionResult HT.Controllers.UserController::Delete(System.Int32)" Source="debugging symbols unavailable, IL offset 0x0021">Duplicated code with Microsoft.AspNetCore.Mvc.IActionResult HT.Controllers.UserController::DeleteConfirmed(System.Int32)</defect>
+      </target>
+    </rule>
+  </results>
+</gendarme-output>

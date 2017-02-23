@@ -1,0 +1,93 @@
+@model IEnumerable<HT.Models.TblUserDetails>
+
+@{
+    ViewData["Title"] = "Userdetails";
+}
+<h2>Userdetails</h2>
+<br />
+<form asp-action="Userdetails" method="get">
+    <p>
+        <table>
+            <tr>
+                <td>User Name :</td>
+                <td> @Html.TextBox("txtSearch")</td>
+                <td>
+                    <input type="submit" value="Search" id="btnSearch" />
+                </td>
+
+            </tr>
+            <tr></tr>
+@if (ViewBag.Records != null && ViewBag.Records <= 0)
+{
+            <tr>
+                <td colspan="3">
+                   
+                    <label id="lblmesg">No records found</label>
+                </td>
+            </tr>
+            
+}
+        </table>
+        <br />
+        <br />
+        <br />
+
+    </p>
+    @if (Model != null)
+    {
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    First Name
+                </th>
+                <th>
+                    Last Name
+                </th>
+                <th>
+                    Mobile
+                </th>
+                <th>
+                    Email
+                </th>
+                @if (User.IsInRole("Admin") == true)
+                {
+                    <th>Option</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Fname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Lname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Phone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EmailId)
+                    </td>
+                    @if (User.IsInRole("Admin") == true)
+                    {
+                        <td>
+                            @Html.ActionLink("Delete", "Delete", new { id = item.UserId }, new { onclick = "return confirm('Are you sure you want to delete?');" }) /
+                            @Html.ActionLink("Edit", "Edit", new { id = item.UserId })
+                        </td>
+                    }
+                </tr>
+            }
+            <tr></tr>
+            <tr>
+                <td colspan="4" align="center">
+                    @Html.ActionLink("Click here for new registration", "Register", "Login",new {mode="new" }) 
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    }
+</form>

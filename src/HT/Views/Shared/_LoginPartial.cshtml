@@ -1,0 +1,37 @@
+﻿
+@if (User.Identity.IsAuthenticated)
+{
+        <form asp-area="" asp-controller="Login" asp-action="LogOff" method="post" id="logoutForm" class="navbar-right">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">Hello @User.Identity.Name!</a>
+                </li>
+                <li>
+                    <button type="submit" id="btnhtlogout" class="btn btn-link navbar-btn navbar-link">Log off</button>
+                </li>
+            </ul>
+            <br />
+            <ul class="nav navbar-nav navbar-right">
+                @if (User.IsInRole("Admin") == true)
+                {
+                <li><a asp-area="" asp-controller="User" asp-action="UserDetails" id="btnhtuserdetails" class="btn btn-default">UserDetails</a></li>
+                <li><a asp-area="" asp-controller="User" asp-action="Admin" id="btnhtadmin" class="btn btn-default">Admin</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="Index" id="btnhthome" class="btn btn-default">Home</a></li>
+                }
+                else
+                {
+                    <li><a asp-area="" asp-controller="User" asp-action="UserDetails" id="btnhtuserdetails" class="btn btn-default">UserDetails</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Index" id="btnhthome" class="btn btn-default">Home</a></li>
+                }
+            </ul>
+        </form>
+    }
+    else
+    {
+    <ul class="nav navbar-nav navbar-right">
+        <li><a asp-area="" asp-controller="Login" asp-action="Register" id="btnhtregister" class="btn btn-default">Register</a></li>
+        <li><a asp-area="" asp-controller="Login" asp-action="Login" id="btnhtlogin" class="btn btn-default">Log in</a></li>
+        <li><a asp-area="" asp-controller="Home" asp-action="Index" id="btnhthome" class="btn btn-default">Home</a></li>
+    </ul>
+}
+

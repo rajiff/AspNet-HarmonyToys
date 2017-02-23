@@ -1,0 +1,21 @@
+<gendarme>
+    <ruleset name="Standard">
+        <rules include="PreferEmptyInstanceOverNullRule" from="Gendarme.Rules.BadPractice.dll"/>
+        <rules include="ObsoleteMessagesShouldBeEmptyRule" from="Gendarme.Rules.BadPractice.dll"/>
+        <rules include="EqualsShouldHandleNullArgRule" from="Gendarme.Rules.BadPractice.dll"/>
+        <rules include="DisableDebuggingCodeRule" from="Gendarme.Rules.BadPractice.dll"/>
+        <rules include="AvoidVisibleConstantFieldRule" from="Gendarme.Rules.BadPractice.dll"/>
+        <rules include="DoNotForgetNotImplementedMethodsRule" from="Gendarme.Rules.BadPractice.dll"/>
+        <rules include="AvoidDeepNamespaceHierarchyRule" from="Gendarme.Rules.Naming.dll"/>
+        <rules include="AvoidNonAlphanumericIdentifierRule" from="Gendarme.Rules.Naming.dll"/>
+        <rules include="AvoidRedundancyInMethodNameRule" from="Gendarme.Rules.Naming.dll"/>
+        <rules include="AvoidRedundancyInTypeNameRule" from="Gendarme.Rules.Naming.dll"/>
+        <rules include="DoNotPrefixValuesWithEnumNameRule" from="Gendarme.Rules.Naming.dll"/>
+        <rules include="UseCorrectCasingRule" from="Gendarme.Rules.Naming.dll"/>
+        <rules include="AvoidCodeDuplicatedInSameClassRule" from="Gendarme.Rules.Smells.dll"/>
+        <rules include="AvoidLargeClassesRule" from="Gendarme.Rules.Smells.dll"/>
+        <rules include="AvoidLongParameterListsRule" from="Gendarme.Rules.Smells.dll"/>
+        <rules include="NonConstantStaticFieldsShouldNotBeVisibleRule" from="Gendarme.Rules.Concurrency.dll"/>
+        <rules include="ArrayFieldsShouldNotBeReadOnlyRule" from="Gendarme.Rules.Security.dll"/>
+    </ruleset>
+</gendarme>
