@@ -4,14 +4,16 @@ using NUnit.Framework;
 using OpenQA.Selenium.PhantomJS;
 using System.IO;
 using System.Threading;
+using OpenQA.Selenium.Internal;
 
 namespace ClassLibrary1
 {
     [TestFixture]
     public class PhantomjsTests
     {
-        private PhantomJSDriver _driver;
-       // [SetUp, MaxTime(60000)]
+        public static PhantomJSDriver _driver;
+
+        [OneTimeSetUp]
         public void SetUp()
         {
             string dir = Path.GetFullPath(".");
@@ -21,11 +23,11 @@ namespace ClassLibrary1
         [Test, Property("Topic", "Working with Views and HTML Helpers")]
         public void RegistrationForm()
         {
-            //    _driver.Manage().Timeouts().SetScriptTimeout(TimeSpan.FromSeconds(30));
-            _driver.Navigate().GoToUrl("http://127.0.0.1:5000/Login/Register");
-
             try
             {
+                _driver.Manage().Timeouts().SetScriptTimeout(TimeSpan.FromSeconds(30));
+                _driver.Navigate().GoToUrl("http://localhost:5000/Login/Register");
+
                 IWebElement txtfname = _driver.FindElement(By.Id("Fname"));
                 IWebElement txtlname = _driver.FindElement(By.Id("Lname"));
                 IWebElement txtphone = _driver.FindElement(By.Id("Phone"));
@@ -34,7 +36,7 @@ namespace ClassLibrary1
                 IWebElement txtpass = _driver.FindElement(By.Id("Password"));
                 IWebElement txtconpass = _driver.FindElement(By.Id("ConfirmPassword"));
                 IWebElement chkadmin = _driver.FindElement(By.Id("IsAdmin"));
-                Console.Out.WriteLine("Registration form existence checked");   
+                Console.Out.WriteLine("Registration form existence checked");
             }
             catch (Exception ex)
             {
@@ -45,11 +47,10 @@ namespace ClassLibrary1
         [Test, Property("Topic", "Validating User Input")]
         public void RegistrationRequiredCheck()
         {
-          //  _driver.Manage().Timeouts().SetScriptTimeout(TimeSpan.FromSeconds(30));
-            _driver.Navigate().GoToUrl("http://127.0.0.1:5000/Login/Register");
-
             try
             {
+                _driver.Manage().Timeouts().SetScriptTimeout(TimeSpan.FromSeconds(30));
+                _driver.Navigate().GoToUrl("http://localhost:5000/Login/Register");
 
                 var alltexts = _driver.FindElementsByCssSelector("[data-val='true']");
                 System.Collections.Generic.List<string> controls = new System.Collections.Generic.List<string>();
@@ -73,13 +74,14 @@ namespace ClassLibrary1
             }
         }
 
-        [Test,Property("Topic", "Validating User Input")]
+        [Test, Property("Topic", "Validating User Input")]
         public void Registration_Email_Phone_type()
         {
-            //_driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(30));
-            _driver.Navigate().GoToUrl("http://127.0.0.1:5000/Login/Register");
+
             try
             {
+                _driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(30));
+                _driver.Navigate().GoToUrl("http://localhost:5000/Login/Register");
                 IWebElement txtphone = _driver.FindElement(By.Id("Phone"));
                 IWebElement txtmail = _driver.FindElement(By.Id("EmailID"));
 
@@ -94,16 +96,17 @@ namespace ClassLibrary1
             }
         }
 
-        [Test,Property("Topic", "Working with Views and HTML Helpers")]
+        [Test, Property("Topic", "Working with Views and HTML Helpers")]
         public void Login_NewRegistrationLink()
         {
-            //_driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(30));
-            _driver.Navigate().GoToUrl("http://127.0.0.1:5000/Login/Login");
 
             try
             {
+                _driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(30));
+                _driver.Navigate().GoToUrl("http://localhost:5000/Login/Login");
+
                 IWebElement btnregister = _driver.FindElement(By.Id("btnhtregisternew"));
-                Assert.AreEqual("http://127.0.0.1:5000/Login/Register?mode=new", btnregister.GetAttribute("href"));
+                Assert.AreEqual("http://localhost:5000/Login/Register?mode=new", btnregister.GetAttribute("href"));
                 Console.Out.WriteLine("New Registration link on login page is succeed");
             }
             catch (Exception ex)
@@ -115,13 +118,14 @@ namespace ClassLibrary1
         [Test, Property("Topic", "Validating User Input")]
         public void Register_Invalid_inputs()
         {
-            //_driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(30));
-            _driver.Navigate().GoToUrl("http://127.0.0.1:5000/Login/Register");
 
             try
             {
+                _driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(30));
+                _driver.Navigate().GoToUrl("http://localhost:5000/Login/Register");
+
                 IWebElement btnsubmit = _driver.FindElementById("btnhtregistration");
-                btnsubmit.Click();
+                btnsubmit.Submit();
 
                 IWebElement fnameerror = _driver.FindElementById("Fname-error");
                 IWebElement lnameerror = _driver.FindElementById("Lname-error");
@@ -160,13 +164,13 @@ namespace ClassLibrary1
         [Test, Property("Topic", "Creating Controller with view")]
         public void Register_Clear()
         {
-            //_driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(30));
-            _driver.Navigate().GoToUrl("http://127.0.0.1:5000/Login/Register");
-
             try
             {
+                _driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(30));
+                _driver.Navigate().GoToUrl("http://localhost:5000/Login/Register");
+
                 IWebElement btnreset = _driver.FindElementById("btnhtclear");
-                btnreset.Click();
+                _driver.ExecuteScript("arguments[0].click();", btnreset);
 
                 IWebElement txtfname = _driver.FindElement(By.Id("Fname"));
                 IWebElement txtlname = _driver.FindElement(By.Id("Lname"));
@@ -195,20 +199,19 @@ namespace ClassLibrary1
         [Test, Property("Topic", "Creating Controller with view")]
         public void CheckAdminMenus_Options()
         {
-            //_driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(30));
-            _driver.Navigate().GoToUrl("http://127.0.0.1:5000/Login/Login");
-
             try
             {
+                _driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(30));
+                _driver.Navigate().GoToUrl("http://localhost:5000/Login/Login");
                 IWebElement txtmail = _driver.FindElement(By.Id("EmailID"));
                 IWebElement txtpass = _driver.FindElement(By.Id("Password"));
                 IWebElement btnsignin = _driver.FindElement(By.Id("btnhtsignin"));
 
                 txtmail.SendKeys("admin@admin.com");
                 txtpass.SendKeys("admin");
-                btnsignin.Click();
+                btnsignin.Submit();
 
-                Assert.AreEqual("http://127.0.0.1:5000/User/Admin", _driver.Url);
+                Assert.AreEqual("http://localhost:5000/User/Admin", _driver.Url);
                 Console.Out.WriteLine("Admin Login is checked");
 
                 IWebElement lnkapprove = _driver.FindElement(By.LinkText("Approve"));
@@ -220,19 +223,19 @@ namespace ClassLibrary1
                 Console.Out.WriteLine("Admin page contains reject link");
 
                 IWebElement btnuser = _driver.FindElementById("btnhtuserdetails");
-                Assert.AreEqual("http://127.0.0.1:5000/User/UserDetails", btnuser.GetAttribute("href"));
+                Assert.AreEqual("http://localhost:5000/User/UserDetails", btnuser.GetAttribute("href"));
                 Console.Out.WriteLine("Admin page contains user details menu");
 
                 IWebElement btnadmin = _driver.FindElementById("btnhtadmin");
-                Assert.AreEqual("http://127.0.0.1:5000/User/Admin", btnadmin.GetAttribute("href"));
+                Assert.AreEqual("http://localhost:5000/User/Admin", btnadmin.GetAttribute("href"));
                 Console.Out.WriteLine("Admin page contains Admin menu");
 
                 IWebElement btnhome = _driver.FindElementById("btnhthome");
-                Assert.AreEqual("http://127.0.0.1:5000/", btnhome.GetAttribute("href"));
+                Assert.AreEqual("http://localhost:5000/", btnhome.GetAttribute("href"));
                 Console.Out.WriteLine("Admin page contains Home menu");
 
                 IWebElement btnlogout = _driver.FindElementById("btnhtlogout");
-                btnlogout.Click();
+                btnlogout.Submit();
             }
             catch (Exception ex)
             {
@@ -243,98 +246,91 @@ namespace ClassLibrary1
         [Test, Property("Topic", "Creating Controller with view")]
         public void Admin_Userdetails_options()
         {
-            //_driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(30));
-            string dir = Path.GetFullPath(".");
-            using (_driver = new PhantomJSDriver(dir))
+            try
             {
-                {
+                _driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(30));
+                _driver.Navigate().GoToUrl("http://localhost:5000/Login/Login");
+                IWebElement txtmail = _driver.FindElement(By.Id("EmailID"));
+                IWebElement txtpass = _driver.FindElement(By.Id("Password"));
+                IWebElement btnsignin = _driver.FindElement(By.Id("btnhtsignin"));
 
-                }
-                _driver.Navigate().GoToUrl("http://127.0.0.1:5000/Login/Login");
+                txtmail.SendKeys("admin@admin.com");
+                txtpass.SendKeys("admin");
+                btnsignin.Submit();
 
-                try
-                {
-                    IWebElement txtmail = _driver.FindElement(By.Id("EmailID"));
-                    IWebElement txtpass = _driver.FindElement(By.Id("Password"));
-                    IWebElement btnsignin = _driver.FindElement(By.Id("btnhtsignin"));
+                _driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(30));
+                IWebElement btnuser = _driver.FindElementById("btnhtuserdetails");
 
-                    txtmail.SendKeys("admin@admin.com");
-                    txtpass.SendKeys("admin");
-                    btnsignin.Click();
+                _driver.ExecuteScript("arguments[0].click();", btnuser);
 
-                    IWebElement btnuser = _driver.FindElementById("btnhtuserdetails");
-                    //if (!btnuser.Displayed)
-                    //    Thread.Sleep(10000);
-                    btnuser.Click();
-                    IWebElement lnkedit = _driver.FindElement(By.LinkText("Edit"));
-                    Assert.IsTrue(lnkedit.GetAttribute("href").Contains("Edit"));
-                    Console.Out.WriteLine("Userdetails for Admin contains Edit option");
+                IWebElement lnkedit = _driver.FindElement(By.LinkText("Edit"));
+                Assert.IsTrue(lnkedit.GetAttribute("href").Contains("Edit"));
+                Console.Out.WriteLine("Userdetails for Admin contains Edit option");
 
-                    IWebElement lnkdelete = _driver.FindElement(By.LinkText("Delete"));
-                    Assert.IsTrue(lnkdelete.GetAttribute("href").Contains("Delete"));
-                    Console.Out.WriteLine("Userdetails for Admin contains Delete option");
+                IWebElement lnkdelete = _driver.FindElement(By.LinkText("Delete"));
+                Assert.IsTrue(lnkdelete.GetAttribute("href").Contains("Delete"));
+                Console.Out.WriteLine("Userdetails for Admin contains Delete option");
 
-                    IWebElement btnlogout = _driver.FindElementById("btnhtlogout");
-                    btnlogout.Click();
-                }
-                catch (Exception ex)
-                {
-                    Console.Out.WriteLine(ex.Message);
-                }
+                IWebElement btnlogout = _driver.FindElementById("btnhtlogout");
+                btnlogout.Submit();
+
+            }
+            catch (Exception ex)
+            {
+                Console.Out.WriteLine(ex.Message);
             }
         }
 
         [Test, Property("Topic", "Creating Controller with view")]
         public void CheckNormalMenus_Options()
         {
-            //_driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(30));
-            _driver.Navigate().GoToUrl("http://127.0.0.1:5000/Login/Login");
-
             try
             {
+                _driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(30));
+                _driver.Navigate().GoToUrl("http://localhost:5000/Login/Login");
                 IWebElement txtmail = _driver.FindElement(By.Id("EmailID"));
                 IWebElement txtpass = _driver.FindElement(By.Id("Password"));
                 IWebElement btnsignin = _driver.FindElement(By.Id("btnhtsignin"));
 
                 txtmail.SendKeys("rohilla@gmail.com");
                 txtpass.SendKeys("1212");
-                btnsignin.Click();
+                btnsignin.Submit();
 
-                Assert.AreEqual("http://127.0.0.1:5000/User/Userdetails", _driver.Url);
+                Assert.AreEqual("http://localhost:5000/User/Userdetails", _driver.Url);
                 Console.Out.WriteLine("Normal user Login is checked");
 
                 IWebElement btnuser = _driver.FindElementById("btnhtuserdetails");
-                Assert.AreEqual("http://127.0.0.1:5000/User/UserDetails", btnuser.GetAttribute("href"));
+                Assert.AreEqual("http://localhost:5000/User/UserDetails", btnuser.GetAttribute("href"));
                 Console.Out.WriteLine("Normal user page contains user details menu");
 
                 IWebElement btnhome = _driver.FindElementById("btnhthome");
-                Assert.AreEqual("http://127.0.0.1:5000/", btnhome.GetAttribute("href"));
+                Assert.AreEqual("http://localhost:5000/", btnhome.GetAttribute("href"));
                 Console.Out.WriteLine("Normal user page contains Home menu");
 
                 IWebElement btnlogout = _driver.FindElementById("btnhtlogout");
-                btnlogout.Click();
+                btnlogout.Submit();
             }
             catch (Exception ex)
             {
                 Console.Out.WriteLine(ex.Message);
             }
-         }
+        }
 
         [Test, Property("Topic", "Creating Controller with view")]
         public void CheckNormal_Userdetails_Options()
         {
-            //_driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(30));
-            _driver.Navigate().GoToUrl("http://127.0.0.1:5000/Login/Login");
-
+            //
             try
             {
+                _driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(30));
+                _driver.Navigate().GoToUrl("http://localhost:5000/Login/Login");
                 IWebElement txtmail = _driver.FindElement(By.Id("EmailID"));
                 IWebElement txtpass = _driver.FindElement(By.Id("Password"));
                 IWebElement btnsignin = _driver.FindElement(By.Id("btnhtsignin"));
 
                 txtmail.SendKeys("rohilla@gmail.com");
                 txtpass.SendKeys("1212");
-                btnsignin.Click();
+                btnsignin.Submit();
 
                 IWebElement lnkedit = _driver.FindElement(By.LinkText("Edit"));
                 Assert.IsFalse(lnkedit.Displayed);
@@ -345,7 +341,7 @@ namespace ClassLibrary1
                 Console.Out.WriteLine("Userdetails for Normal does not contains Delete option");
 
                 IWebElement btnlogout = _driver.FindElementById("btnhtlogout");
-                btnlogout.Click();
+                btnlogout.Submit();
             }
             catch (Exception ex)
             {
@@ -353,21 +349,20 @@ namespace ClassLibrary1
             }
         }
 
-        [Test,Property("Topic", "Creating Controller with view")]
+        [Test, Property("Topic", "Creating Controller with view")]
         public void Userdetails_searchbox()
         {
-            //_driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(30));
-            _driver.Navigate().GoToUrl("http://127.0.0.1:5000/Login/Login");
-
             try
             {
+                _driver.Navigate().GoToUrl("http://localhost:5000/Login/Login");
+                _driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(30));
                 IWebElement txtmail = _driver.FindElement(By.Id("EmailID"));
                 IWebElement txtpass = _driver.FindElement(By.Id("Password"));
                 IWebElement btnsignin = _driver.FindElement(By.Id("btnhtsignin"));
 
                 txtmail.SendKeys("rohilla@gmail.com");
                 txtpass.SendKeys("1212");
-                btnsignin.Click();
+                btnsignin.Submit();
 
                 IWebElement txtsearch = _driver.FindElementById("txtSearch");
                 IWebElement btnsearch = _driver.FindElementById("btnSearch");
@@ -377,14 +372,14 @@ namespace ClassLibrary1
                 Console.Out.WriteLine("Userdetails contains a textbox and button to search");
 
                 txtsearch.SendKeys("zzzzz");
-                btnsearch.Click();
+                btnsearch.Submit();
 
                 IWebElement lblerr = _driver.FindElementById("lblmesg");
                 Assert.AreEqual("No records found", lblerr.GetAttribute("textContent"));
                 Console.Out.WriteLine("Error label for search box is succeed");
 
                 IWebElement btnlogout = _driver.FindElementById("btnhtlogout");
-                btnlogout.Click();
+                btnlogout.Submit();
             }
             catch (Exception ex)
             {
@@ -392,7 +387,7 @@ namespace ClassLibrary1
             }
         }
 
-    //    [TearDown]
+        [OneTimeTearDown]
         public void TearDown()
         {
             Thread.Sleep(10000);
