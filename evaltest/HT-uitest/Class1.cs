@@ -22,7 +22,7 @@ namespace ClassLibrary1
         public void RegistrationForm()
         {
             //    _driver.Manage().Timeouts().SetScriptTimeout(TimeSpan.FromSeconds(30));
-            _driver.Navigate().GoToUrl("http://localhost:5000/Login/Register");
+            _driver.Navigate().GoToUrl("http://127.0.0.1:5000/Login/Register");
 
             try
             {
@@ -46,7 +46,7 @@ namespace ClassLibrary1
         public void RegistrationRequiredCheck()
         {
           //  _driver.Manage().Timeouts().SetScriptTimeout(TimeSpan.FromSeconds(30));
-            _driver.Navigate().GoToUrl("http://localhost:5000/Login/Register");
+            _driver.Navigate().GoToUrl("http://127.0.0.1:5000/Login/Register");
 
             try
             {
@@ -77,7 +77,7 @@ namespace ClassLibrary1
         public void Registration_Email_Phone_type()
         {
             //_driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(30));
-            _driver.Navigate().GoToUrl("http://localhost:5000/Login/Register");
+            _driver.Navigate().GoToUrl("http://127.0.0.1:5000/Login/Register");
             try
             {
                 IWebElement txtphone = _driver.FindElement(By.Id("Phone"));
@@ -98,12 +98,12 @@ namespace ClassLibrary1
         public void Login_NewRegistrationLink()
         {
             //_driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(30));
-            _driver.Navigate().GoToUrl("http://localhost:5000/Login/Login");
+            _driver.Navigate().GoToUrl("http://127.0.0.1:5000/Login/Login");
 
             try
             {
                 IWebElement btnregister = _driver.FindElement(By.Id("btnhtregisternew"));
-                Assert.AreEqual("http://localhost:5000/Login/Register?mode=new", btnregister.GetAttribute("href"));
+                Assert.AreEqual("http://127.0.0.1:5000/Login/Register?mode=new", btnregister.GetAttribute("href"));
                 Console.Out.WriteLine("New Registration link on login page is succeed");
             }
             catch (Exception ex)
@@ -116,7 +116,7 @@ namespace ClassLibrary1
         public void Register_Invalid_inputs()
         {
             //_driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(30));
-            _driver.Navigate().GoToUrl("http://localhost:5000/Login/Register");
+            _driver.Navigate().GoToUrl("http://127.0.0.1:5000/Login/Register");
 
             try
             {
@@ -161,7 +161,7 @@ namespace ClassLibrary1
         public void Register_Clear()
         {
             //_driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(30));
-            _driver.Navigate().GoToUrl("http://localhost:5000/Login/Register");
+            _driver.Navigate().GoToUrl("http://127.0.0.1:5000/Login/Register");
 
             try
             {
@@ -196,7 +196,7 @@ namespace ClassLibrary1
         public void CheckAdminMenus_Options()
         {
             //_driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(30));
-            _driver.Navigate().GoToUrl("http://localhost:5000/Login/Login");
+            _driver.Navigate().GoToUrl("http://127.0.0.1:5000/Login/Login");
 
             try
             {
@@ -208,7 +208,7 @@ namespace ClassLibrary1
                 txtpass.SendKeys("admin");
                 btnsignin.Click();
 
-                Assert.AreEqual("http://localhost:5000/User/Admin", _driver.Url);
+                Assert.AreEqual("http://127.0.0.1:5000/User/Admin", _driver.Url);
                 Console.Out.WriteLine("Admin Login is checked");
 
                 IWebElement lnkapprove = _driver.FindElement(By.LinkText("Approve"));
@@ -220,15 +220,15 @@ namespace ClassLibrary1
                 Console.Out.WriteLine("Admin page contains reject link");
 
                 IWebElement btnuser = _driver.FindElementById("btnhtuserdetails");
-                Assert.AreEqual("http://localhost:5000/User/UserDetails", btnuser.GetAttribute("href"));
+                Assert.AreEqual("http://127.0.0.1:5000/User/UserDetails", btnuser.GetAttribute("href"));
                 Console.Out.WriteLine("Admin page contains user details menu");
 
                 IWebElement btnadmin = _driver.FindElementById("btnhtadmin");
-                Assert.AreEqual("http://localhost:5000/User/Admin", btnadmin.GetAttribute("href"));
+                Assert.AreEqual("http://127.0.0.1:5000/User/Admin", btnadmin.GetAttribute("href"));
                 Console.Out.WriteLine("Admin page contains Admin menu");
 
                 IWebElement btnhome = _driver.FindElementById("btnhthome");
-                Assert.AreEqual("http://localhost:5000/", btnhome.GetAttribute("href"));
+                Assert.AreEqual("http://127.0.0.1:5000/", btnhome.GetAttribute("href"));
                 Console.Out.WriteLine("Admin page contains Home menu");
 
                 IWebElement btnlogout = _driver.FindElementById("btnhtlogout");
@@ -250,7 +250,7 @@ namespace ClassLibrary1
                 {
 
                 }
-                _driver.Navigate().GoToUrl("http://localhost:5000/Login/Login");
+                _driver.Navigate().GoToUrl("http://127.0.0.1:5000/Login/Login");
 
                 try
                 {
@@ -288,7 +288,7 @@ namespace ClassLibrary1
         public void CheckNormalMenus_Options()
         {
             //_driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(30));
-            _driver.Navigate().GoToUrl("http://localhost:5000/Login/Login");
+            _driver.Navigate().GoToUrl("http://127.0.0.1:5000/Login/Login");
 
             try
             {
@@ -300,15 +300,15 @@ namespace ClassLibrary1
                 txtpass.SendKeys("1212");
                 btnsignin.Click();
 
-                Assert.AreEqual("http://localhost:5000/User/Userdetails", _driver.Url);
+                Assert.AreEqual("http://127.0.0.1:5000/User/Userdetails", _driver.Url);
                 Console.Out.WriteLine("Normal user Login is checked");
 
                 IWebElement btnuser = _driver.FindElementById("btnhtuserdetails");
-                Assert.AreEqual("http://localhost:5000/User/UserDetails", btnuser.GetAttribute("href"));
+                Assert.AreEqual("http://127.0.0.1:5000/User/UserDetails", btnuser.GetAttribute("href"));
                 Console.Out.WriteLine("Normal user page contains user details menu");
 
                 IWebElement btnhome = _driver.FindElementById("btnhthome");
-                Assert.AreEqual("http://localhost:5000/", btnhome.GetAttribute("href"));
+                Assert.AreEqual("http://127.0.0.1:5000/", btnhome.GetAttribute("href"));
                 Console.Out.WriteLine("Normal user page contains Home menu");
 
                 IWebElement btnlogout = _driver.FindElementById("btnhtlogout");
@@ -324,7 +324,7 @@ namespace ClassLibrary1
         public void CheckNormal_Userdetails_Options()
         {
             //_driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(30));
-            _driver.Navigate().GoToUrl("http://localhost:5000/Login/Login");
+            _driver.Navigate().GoToUrl("http://127.0.0.1:5000/Login/Login");
 
             try
             {
@@ -357,7 +357,7 @@ namespace ClassLibrary1
         public void Userdetails_searchbox()
         {
             //_driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(30));
-            _driver.Navigate().GoToUrl("http://localhost:5000/Login/Login");
+            _driver.Navigate().GoToUrl("http://127.0.0.1:5000/Login/Login");
 
             try
             {
