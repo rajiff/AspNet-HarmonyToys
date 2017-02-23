@@ -15,7 +15,7 @@ namespace ClassLibrary1
         public void SetUp()
         {
             string dir = Path.GetFullPath(".");
-            _driver = new PhantomJSDriver(dir);
+            _driver = new PhantomJSDriver("C:\\app\\workspace\\submission\\evaltest\\HT-uitest\\PhantomJs.exe");
         }
 
         [Test, Property("Topic", "Working with Views and HTML Helpers")]
